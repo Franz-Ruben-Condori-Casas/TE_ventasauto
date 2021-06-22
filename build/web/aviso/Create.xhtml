@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAvisoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{avisoController.selected.id}" title="#{bundle.CreateAvisoTitle_id}" required="true" requiredMessage="#{bundle.CreateAvisoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{avisoController.selected.fecha}" title="#{bundle.CreateAvisoTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{avisoController.selected.titulo}" title="#{bundle.CreateAvisoTitle_titulo}" />
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_contenido}" for="contenido" />
+                    <h:inputTextarea rows="4" cols="30" id="contenido" value="#{avisoController.selected.contenido}" title="#{bundle.CreateAvisoTitle_contenido}" />
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_referencia}" for="referencia" />
+                    <h:inputText id="referencia" value="#{avisoController.selected.referencia}" title="#{bundle.CreateAvisoTitle_referencia}" />
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_idCategoria}" for="idCategoria" />
+                    <h:inputText id="idCategoria" value="#{avisoController.selected.idCategoria}" title="#{bundle.CreateAvisoTitle_idCategoria}" />
+                    <h:outputLabel value="#{bundle.CreateAvisoLabel_idUsuario}" for="idUsuario" />
+                    <h:inputText id="idUsuario" value="#{avisoController.selected.idUsuario}" title="#{bundle.CreateAvisoTitle_idUsuario}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{avisoController.create}" value="#{bundle.CreateAvisoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{avisoController.prepareList}" value="#{bundle.CreateAvisoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAvisoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
